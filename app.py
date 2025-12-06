@@ -249,19 +249,32 @@ with col2:
         st.plotly_chart(fig2, use_container_width=True)
         
         # Ek bilgiler
-        son_orta = df_orta.iloc[-1]
-        col_info3, col_info4 = st.columns(2)
-        with col_info3:
-            st.metric(
-                label="Toplam Birikim",
-                value=f"₺{son_orta['Toplam Birikim']:,.0f}"
-            )
-        with col_info4:
-            st.metric(
-                label="Getiri %",
-                value=f"%{(son_orta['Kar/Zarar']/son_orta['Toplam Yatırılan']*100):.1f}"
-            )
     
+son_orta = df_orta.iloc[-1]
+
+# col_info3, col_info4 kısmını SİL ve buraya ekle:
+st.write(f"""
+<div style="
+    background-color: rgba(240, 242, 246, 0.9);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 2px 0 5px 0;
+    border-left: 4px solid #FFA726;
+">
+    <div style="font-weight: bold; color: #2c3e50; font-size: 13px;">
+        Toplam Birikim
+    </div>
+    <div style="font-size: 16px; font-weight: bold; color: #1a237e; margin-bottom: 8px;">
+        ₺{son_orta['Toplam Birikim']:,.0f}
+    </div>
+    <div style="font-weight: bold; color: #2c3e50; font-size: 13px;">
+        Getiri Oranı
+    </div>
+    <div style="font-size: 15px; font-weight: bold; color: #F57C00;">
+        %{(son_orta['Kar/Zarar']/son_orta['Toplam Yatırılan']*100):.1f}
+    </div>
+</div>
+""", unsafe_allow_html=True)
     with graf3:
         st.subheader(" Kötü Senaryo")
         fig3 = go.Figure()
