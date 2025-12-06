@@ -250,6 +250,7 @@ with col2:
         
         # Ek bilgiler
     
+    
 son_orta = df_orta.iloc[-1]
 
 # col_info3, col_info4 kısmını SİL ve buraya ekle:
