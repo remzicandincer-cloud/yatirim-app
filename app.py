@@ -249,11 +249,7 @@ with col2:
         st.plotly_chart(fig2, use_container_width=True)
         
         # Ek bilgiler
-    
-    
-    
- son_orta = df_orta.iloc[-1]
-
+son_orta = df_orta.iloc[-1]
         col_info3, col_info4 = st.columns(2)
         with col_info3:
             st.metric(
