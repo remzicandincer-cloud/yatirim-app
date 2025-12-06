@@ -33,11 +33,11 @@ for i in range(ek_yatirim_sayisi):
     st.sidebar.markdown(f"**Aralık {i+1}**")
     col1, col2, col3 = st.sidebar.columns(3)
     with col1:
-        baslangic_ay = st.number_input(f"Başlangıç Ayı", min_value=1, max_value=240, value=(i*12)+1, key=f"bas_{i}")
+        baslangic_ay = st.sidebar.number_input(f"Başlangıç Ayı", min_value=1, max_value=240, value=(i*12)+1, key=f"bas_{i}")
     with col2:
-        bitis_ay = st.number_input(f"Bitiş Ayı", min_value=1, max_value=240, value=min(ay_sayisi, (i+1)*12), key=f"bit_{i}")
+        bitis_ay = st.sidebar.number_input(f"Bitiş Ayı", min_value=1, max_value=240, value=min(ay_sayisi, (i+1)*12), key=f"bit_{i}")
     with col3:
-        ek_tutar = st.number_input(f"Ek Tutar (TL)", min_value=0, max_value=100000, value=(i+1)*3000, key=f"tutar_{i}")
+        ek_tutar = st.sidebar.number_input(f"Ek Tutar (TL)", min_value=0, max_value=100000, value=(i+1)*3000, key=f"tutar_{i}")
     
     if baslangic_ay <= bitis_ay:
         ek_yatirimlar.append({
