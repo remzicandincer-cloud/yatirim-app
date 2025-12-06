@@ -8,12 +8,12 @@ st.set_page_config(layout="wide")
 # =========================
 # SOL PANEL – PARAMETRELER
 # =========================
-st.sidebar.header(" Parametreler")
+st.sidebar.header("⚙️ Parametreler")
 
 baslangic = st.sidebar.number_input("Başlangıç Tutarı (TL)", 0, 1_000_000, 6000)
 ay_sayisi = st.sidebar.number_input("Yatırım Süresi (Ay)", 1, 240, 60)
 
-st.sidebar.markdown("###  Aylık Getiri (%)")
+st.sidebar.markdown("### 📊 Aylık Getiri (%)")
 iyi_oran = st.sidebar.number_input("En İyi", -10.0, 20.0, 3.0) / 100
 orta_oran = st.sidebar.number_input("Ortalama", -10.0, 20.0, 1.2) / 100
 kotu_oran = st.sidebar.number_input("Kötü", -10.0, 20.0, -0.5) / 100
@@ -22,7 +22,7 @@ kotu_oran = st.sidebar.number_input("Kötü", -10.0, 20.0, -0.5) / 100
 # MAVİ KISIM: AY ARALIKLARINDA EK YATIRIM
 # =========================
 st.sidebar.markdown("---")
-st.sidebar.subheader(" Ay Aralıklarında Ek Yatırım")
+st.sidebar.subheader("📅 Ay Aralıklarında Ek Yatırım")
 
 # Dinamik ek yatırım alanları
 ek_yatirimlar = []
@@ -33,11 +33,11 @@ for i in range(ek_yatirim_sayisi):
     st.sidebar.markdown(f"**Aralık {i+1}**")
     col1, col2, col3 = st.sidebar.columns(3)
     with col1:
-        baslangic_ay = st.sidebar.number_input(f"Başlangıç Ayı", min_value=1, max_value=240, value=(i*12)+1, key=f"bas_{i}")
+        baslangic_ay = st.number_input(f"Başlangıç Ayı", min_value=1, max_value=240, value=(i*12)+1, key=f"bas_{i}")
     with col2:
-        bitis_ay = st.sidebar.number_input(f"Bitiş Ayı", min_value=1, max_value=240, value=min(ay_sayisi, (i+1)*12), key=f"bit_{i}")
+        bitis_ay = st.number_input(f"Bitiş Ayı", min_value=1, max_value=240, value=min(ay_sayisi, (i+1)*12), key=f"bit_{i}")
     with col3:
-        ek_tutar = st.sidebar.number_input(f"Ek Tutar (TL)", min_value=0, max_value=100000, value=(i+1)*3000, key=f"tutar_{i}")
+        ek_tutar = st.number_input(f"Ek Tutar (TL)", min_value=0, max_value=100000, value=(i+1)*3000, key=f"tutar_{i}")
     
     if baslangic_ay <= bitis_ay:
         ek_yatirimlar.append({
@@ -97,7 +97,7 @@ col1, col2 = st.columns([1.1, 2.4])
 # SOL - TABLO
 # =========================
 with col1:
-    st.subheader(" Aylık Yatırım Tablosu")
+    st.subheader("📋 Aylık Yatırım Tablosu")
     st.dataframe(
         df_orta[["Ay", "Aylık Ek Yatırım", "Toplam Yatırılan", "Toplam Birikim", "Kar/Zarar"]],
         height=500,
@@ -109,7 +109,7 @@ with col1:
 # =========================
 with col2:
     # ÜSTTE: YATIRIM AKIŞI GRAFİĞİ
-    st.subheader(" Yatırım Akışı")
+    st.subheader("🌊 Yatırım Akışı")
     
     fig_flow = go.Figure()
     
@@ -179,7 +179,7 @@ with col2:
     graf1, graf2, graf3 = st.columns(3)
     
     with graf1:
-        st.subheader(" En İyi Senaryo")
+        st.subheader("📈 En İyi Senaryo")
         fig1 = go.Figure()
         fig1.add_trace(go.Scatter(
             x=df_iyi["Ay"], 
@@ -221,7 +221,7 @@ with col2:
             )
     
     with graf2:
-        st.subheader(" Ortalama Senaryo")
+        st.subheader("📊 Ortalama Senaryo")
         fig2 = go.Figure()
         fig2.add_trace(go.Scatter(
             x=df_orta["Ay"], 
@@ -249,21 +249,21 @@ with col2:
         st.plotly_chart(fig2, use_container_width=True)
         
         # Ek bilgiler
-son_orta = df_orta.iloc[-1]
-col_info3, col_info4 = st.columns(2)
-with col_info3:
-   st.metric(
-       label="Toplam Birikim",
-       value=f"₺{son_orta['Toplam Birikim']:,.0f}"
+        son_orta = df_orta.iloc[-1]
+        col_info3, col_info4 = st.columns(2)
+        with col_info3:
+            st.metric(
+                label="Toplam Birikim",
+                value=f"₺{son_orta['Toplam Birikim']:,.0f}"
             )
-with col_info4:
-  st.metric(
-      label="Getiri %",
-      value=f"%{(son_orta['Kar/Zarar']/son_orta['Toplam Yatırılan']*100):.1f}"
+        with col_info4:
+            st.metric(
+                label="Getiri %",
+                value=f"%{(son_orta['Kar/Zarar']/son_orta['Toplam Yatırılan']*100):.1f}"
             )
-
-with graf3:
-        st.subheader(" Kötü Senaryo")
+    
+    with graf3:
+        st.subheader("📉 Kötü Senaryo")
         fig3 = go.Figure()
         fig3.add_trace(go.Scatter(
             x=df_kotu["Ay"], 
@@ -308,10 +308,10 @@ with graf3:
 # SAĞ SİDEBAR - YATIRIM ÖZETİ
 # =========================
 st.sidebar.markdown("---")
-st.sidebar.subheader(" Yatırım Özeti")
+st.sidebar.subheader("💰 Yatırım Özeti")
 
 # Yatırım özeti bilgileri
-st.sidebar.markdown("###  Son Durum")
+st.sidebar.markdown("### 📊 Son Durum")
 
 # En İyi Senaryo
 son_iyi = df_iyi.iloc[-1]
@@ -372,7 +372,7 @@ st.sidebar.markdown(f"*Yatırılan: ₺{son_kotu['Toplam Yatırılan']:,.0f}*")
 
 # Genel Özet
 st.sidebar.markdown("---")
-st.sidebar.markdown("###  Genel Özet")
+st.sidebar.markdown("### 📈 Genel Özet")
 
 st.sidebar.markdown(f"""
 **Başlangıç:** ₺{baslangic:,.0f}
@@ -388,7 +388,7 @@ st.sidebar.markdown(f"""
 # ALT KISIM - EK TABLO
 # =========================
 st.markdown("---")
-st.subheader(" Tüm Senaryoların Detaylı Tablosu")
+st.subheader("📊 Tüm Senaryoların Detaylı Tablosu")
 
 # 3 senaryoyu birleştiren tablo
 comparison_df = pd.DataFrame({
@@ -457,23 +457,3 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-# ... mevcut kodların ...
-
-# =========================
-# ALT KISIM - EK TABLO
-# =========================
-st.markdown("---")
-st.subheader("📊 Tüm Senaryoların Detaylı Tablosu")
-
-comparison_df = pd.DataFrame({
-    'Ay': df_orta['Ay'],
-    'En İyi Birikim': df_iyi['Toplam Birikim'],
-    'Ortalama Birikim': df_orta['Toplam Birikim'],
-    'Kötü Birikim': df_kotu['Toplam Birikim'],
-    'En İyi Kar/Zarar': df_iyi['Kar/Zarar'],
-    'Ortalama Kar/Zarar': df_orta['Kar/Zarar'],
-    'Kötü Kar/Zarar': df_kotu['Kar/Zarar']
-})
-
-st.dataframe(comparison_df, height=300, use_container_width=True)
-
