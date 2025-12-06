@@ -275,7 +275,8 @@ st.write(f"""
     </div>
 </div>
 """, unsafe_allow_html=True)
-    with graf3:
+    
+with graf3:
         st.subheader(" Kötü Senaryo")
         fig3 = go.Figure()
         fig3.add_trace(go.Scatter(
