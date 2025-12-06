@@ -250,16 +250,16 @@ with col2:
         
         # Ek bilgiler
 son_orta = df_orta.iloc[-1]
-        col_info3, col_info4 = st.columns(2)
-        with col_info3:
-            st.metric(
-                label="Toplam Birikim",
-                value=f"₺{son_orta['Toplam Birikim']:,.0f}"
+col_info3, col_info4 = st.columns(2)
+with col_info3:
+   st.metric(
+       label="Toplam Birikim",
+       value=f"₺{son_orta['Toplam Birikim']:,.0f}"
             )
-        with col_info4:
-            st.metric(
-                label="Getiri %",
-                value=f"%{(son_orta['Kar/Zarar']/son_orta['Toplam Yatırılan']*100):.1f}"
+with col_info4:
+  st.metric(
+      label="Getiri %",
+      value=f"%{(son_orta['Kar/Zarar']/son_orta['Toplam Yatırılan']*100):.1f}"
             )
 
 with graf3:
