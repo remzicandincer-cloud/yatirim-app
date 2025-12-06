@@ -253,6 +253,7 @@ with col2:
     
     
  son_orta = df_orta.iloc[-1]
+
         col_info3, col_info4 = st.columns(2)
         with col_info3:
             st.metric(
