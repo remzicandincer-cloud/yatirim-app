@@ -2,7 +2,10 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import numpy as np
-
+# Her yeni kullanıcı için session'ı temizle
+if 'initialized' not in st.session_state:
+    st.session_state.clear()
+    st.session_state.initialized = True
 st.set_page_config(layout="wide")
 
 # =========================
