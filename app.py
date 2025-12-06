@@ -457,3 +457,79 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+# ... mevcut kodların ...
+
+# =========================
+# ALT KISIM - EK TABLO
+# =========================
+st.markdown("---")
+st.subheader("📊 Tüm Senaryoların Detaylı Tablosu")
+
+comparison_df = pd.DataFrame({
+    'Ay': df_orta['Ay'],
+    'En İyi Birikim': df_iyi['Toplam Birikim'],
+    'Ortalama Birikim': df_orta['Toplam Birikim'],
+    'Kötü Birikim': df_kotu['Toplam Birikim'],
+    'En İyi Kar/Zarar': df_iyi['Kar/Zarar'],
+    'Ortalama Kar/Zarar': df_orta['Kar/Zarar'],
+    'Kötü Kar/Zarar': df_kotu['Kar/Zarar']
+})
+
+st.dataframe(comparison_df, height=300, use_container_width=True)
+
+# =========================
+# CSS STILLERİ - BURAYA EKLE ↓↓↓
+# =========================
+st.markdown("""
+<style>
+    /* Metric kutularını eşit yükseklikte yap */
+    div[data-testid="stMetric"] {
+        min-height: 95px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+    
+    /* Tüm metric'ler için aynı padding */
+    .stMetric {
+        padding: 12px 10px !important;
+        margin: 5px 0 !important;
+    }
+    
+    /* Grafik altındaki metric'ler için özel stil */
+    div[data-testid="column"] .stMetric {
+        min-height: 100px !important;
+        background-color: rgba(240, 242, 246, 0.9) !important;
+        border-radius: 10px !important;
+        border-left: 4px solid !important;
+    }
+    
+    /* İyi senaryo - yeşil border */
+    div[data-testid="column"]:nth-child(1) .stMetric {
+        border-left-color: #66BB6A !important;
+    }
+    
+    /* Ortalama senaryo - turuncu border */
+    div[data-testid="column"]:nth-child(2) .stMetric {
+        border-left-color: #FFA726 !important;
+    }
+    
+    /* Kötü senaryo - kırmızı border */
+    div[data-testid="column"]:nth-child(3) .stMetric {
+        border-left-color: #EF5350 !important;
+    }
+    
+    /* Metin stilleri */
+    .stMetric label {
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+        color: #2c3e50 !important;
+    }
+    
+    div[data-testid="stMetricValue"] {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        color: #1a237e !important;
+    }
+</style>
+""", unsafe_allow_html=True)
