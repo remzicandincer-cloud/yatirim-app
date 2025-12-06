@@ -8,12 +8,12 @@ st.set_page_config(layout="wide")
 # =========================
 # SOL PANEL – PARAMETRELER
 # =========================
-st.sidebar.header("⚙️ Parametreler")
+st.sidebar.header(" Parametreler")
 
 baslangic = st.sidebar.number_input("Başlangıç Tutarı (TL)", 0, 1_000_000, 6000)
 ay_sayisi = st.sidebar.number_input("Yatırım Süresi (Ay)", 1, 240, 60)
 
-st.sidebar.markdown("### 📊 Aylık Getiri (%)")
+st.sidebar.markdown("###  Aylık Getiri (%)")
 iyi_oran = st.sidebar.number_input("En İyi", -10.0, 20.0, 3.0) / 100
 orta_oran = st.sidebar.number_input("Ortalama", -10.0, 20.0, 1.2) / 100
 kotu_oran = st.sidebar.number_input("Kötü", -10.0, 20.0, -0.5) / 100
@@ -22,7 +22,7 @@ kotu_oran = st.sidebar.number_input("Kötü", -10.0, 20.0, -0.5) / 100
 # MAVİ KISIM: AY ARALIKLARINDA EK YATIRIM
 # =========================
 st.sidebar.markdown("---")
-st.sidebar.subheader("📅 Ay Aralıklarında Ek Yatırım")
+st.sidebar.subheader(" Ay Aralıklarında Ek Yatırım")
 
 # Dinamik ek yatırım alanları
 ek_yatirimlar = []
@@ -97,7 +97,7 @@ col1, col2 = st.columns([1.1, 2.4])
 # SOL - TABLO
 # =========================
 with col1:
-    st.subheader("📋 Aylık Yatırım Tablosu")
+    st.subheader(" Aylık Yatırım Tablosu")
     st.dataframe(
         df_orta[["Ay", "Aylık Ek Yatırım", "Toplam Yatırılan", "Toplam Birikim", "Kar/Zarar"]],
         height=500,
@@ -109,7 +109,7 @@ with col1:
 # =========================
 with col2:
     # ÜSTTE: YATIRIM AKIŞI GRAFİĞİ
-    st.subheader("🌊 Yatırım Akışı")
+    st.subheader(" Yatırım Akışı")
     
     fig_flow = go.Figure()
     
@@ -179,7 +179,7 @@ with col2:
     graf1, graf2, graf3 = st.columns(3)
     
     with graf1:
-        st.subheader("📈 En İyi Senaryo")
+        st.subheader(" En İyi Senaryo")
         fig1 = go.Figure()
         fig1.add_trace(go.Scatter(
             x=df_iyi["Ay"], 
@@ -221,7 +221,7 @@ with col2:
             )
     
     with graf2:
-        st.subheader("📊 Ortalama Senaryo")
+        st.subheader(" Ortalama Senaryo")
         fig2 = go.Figure()
         fig2.add_trace(go.Scatter(
             x=df_orta["Ay"], 
@@ -263,7 +263,7 @@ with col2:
             )
     
     with graf3:
-        st.subheader("📉 Kötü Senaryo")
+        st.subheader(" Kötü Senaryo")
         fig3 = go.Figure()
         fig3.add_trace(go.Scatter(
             x=df_kotu["Ay"], 
@@ -308,10 +308,10 @@ with col2:
 # SAĞ SİDEBAR - YATIRIM ÖZETİ
 # =========================
 st.sidebar.markdown("---")
-st.sidebar.subheader("💰 Yatırım Özeti")
+st.sidebar.subheader(" Yatırım Özeti")
 
 # Yatırım özeti bilgileri
-st.sidebar.markdown("### 📊 Son Durum")
+st.sidebar.markdown("###  Son Durum")
 
 # En İyi Senaryo
 son_iyi = df_iyi.iloc[-1]
@@ -372,7 +372,7 @@ st.sidebar.markdown(f"*Yatırılan: ₺{son_kotu['Toplam Yatırılan']:,.0f}*")
 
 # Genel Özet
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 📈 Genel Özet")
+st.sidebar.markdown("###  Genel Özet")
 
 st.sidebar.markdown(f"""
 **Başlangıç:** ₺{baslangic:,.0f}
@@ -388,7 +388,7 @@ st.sidebar.markdown(f"""
 # ALT KISIM - EK TABLO
 # =========================
 st.markdown("---")
-st.subheader("📊 Tüm Senaryoların Detaylı Tablosu")
+st.subheader(" Tüm Senaryoların Detaylı Tablosu")
 
 # 3 senaryoyu birleştiren tablo
 comparison_df = pd.DataFrame({
